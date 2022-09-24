@@ -62,7 +62,7 @@ class Contenedor{
         const contenido = await fs.promises.readFile(this.nameFile, "utf-8")
         const productos = JSON.parse(contenido)
         const nuevoselementos = productos.filter(item => item.id != id)
-        await fs.promises.writeFile(this.nameFile, JSON.stringify([nuevoselementos], null, 2))
+        await fs.promises.writeFile(this.nameFile, JSON.stringify(nuevoselementos, null, 2))
     }
     deleteAll = async ()=>{
         const contenido = await fs.promises.readFile(this.nameFile, "utf-8")
