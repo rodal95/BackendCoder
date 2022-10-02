@@ -5,7 +5,7 @@ const Contenedor = require("./contenedor.js")
 
 const app = express()
 const listaProductos = new Contenedor("productos.txt")
-let id = parseInt(Math.random()*5+1)
+
 app.get("/",(request,response)=>{
     response.send("<h1 style='color:blue'>bienvenido</h1>")
 })
@@ -16,6 +16,7 @@ app.get("/productos",async  (request, response)=>{
 })
 
 app.get("/productosRandom",async  (request, response)=>{
+    let id = parseInt(Math.random()*5+1)
     const productRan = await listaProductos.getById(id)
     response.send(productRan)
 })
