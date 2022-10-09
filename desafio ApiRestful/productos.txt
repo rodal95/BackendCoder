@@ -1,31 +1,37 @@
 [
   {
-    "title": "Calculadora",
-    "price": 234.56,
+    "title": "procesador",
+    "price": 150000,
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
+    "id": 1
+  },
+  {
+    "title": "tablet",
+    "price": 23476,
     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
     "id": 2
   },
   {
-    "title": "Globo Terráqueo",
-    "price": 345.67,
+    "title": "Computadora",
+    "price": 145000,
     "thumbnail": "https://cdn0.iconfinder.com/data/icons/economico-a-business-icon-set/74/pencil-lapis-512.png",
     "id": 3
   },
   {
-    "title": "Lapiz",
-    "price": 300.67,
+    "title": "impresora",
+    "price": 30067,
     "thumbnail": "https://cdn4.iconfinder.com/data/icons/cons-flat-and-colorful-icons-set/240/559001-icons_12-512.png",
     "id": 4
   },
   {
     "title": "Celular",
-    "price": 500.67,
+    "price": 50000,
     "thumbnail": "https://cdn1.iconfinder.com/data/icons/smartphone-color-line-1/64/Carmera-Smartphone-Mobile-Internet-Connection-256.png",
     "id": 5
   },
   {
-    "title": "Lapicera",
-    "price": 250.67,
+    "title": "gabinete",
+    "price": 7500,
     "thumbnail": "https://media.istockphoto.com/vectors/fountain-pen-icon-flat-vector-id1195835472?b=1&k=20&m=1195835472&s=170x170&h=FZPoHLYaTrfHywluTCBUh2ca7sDTCgA3c1LVVBkp_nE=",
     "id": 6
   }
