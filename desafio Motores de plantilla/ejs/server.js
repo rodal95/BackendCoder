@@ -12,6 +12,7 @@ app.set("view engine","ejs")
 
 
 const productos = []
+
 app.get("/", (req,res)=>{
     res.render("home")
 })
@@ -19,14 +20,15 @@ app.get("/formulario",(req,res)=>{
     res.render("form")
 })
 app.get("/tabla",(req,res)=>{
-    res.render("table")
+    res.render("table",{products:productos})
 })
 
 app.post("/formulario",(req,res)=>{
     const newProduct = req.body
-    console.log(newProduct)
-    /* productos.push(newProduct) */
+    
+    productos.push(newProduct)
     res.redirect("/")
+    console.log(productos)
 })
 
 

@@ -1,7 +1,19 @@
 <div>
     <h2>lista de productos</h2>
-
-
+    <table>
+        <tr>
+          <th>Nombre</th>
+          <th>precio</th>
+          <th>stock</th>
+        </tr>
+        <% products.forEach(producto => { %>
+        <tr>
+          <td><%- producto.name -%></td>
+          <td><%- producto.price -%></td>
+          <td><%- producto.stock -%></td>
+        </tr>
+      </table>
+      <%  }) %>
 </div>
 
 <a href="/">volver a home</a><br>
