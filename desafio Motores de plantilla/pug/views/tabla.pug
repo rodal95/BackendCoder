@@ -1,0 +1,18 @@
+div
+    h1 vista tabla
+    table 
+        tr 
+            th nombre
+            th precio
+            th stock
+        each val in productos
+            tr 
+                td=val.name
+                td=val.price 
+                td=val.stock
+
+
+
+    a(href="/") home 
+    br
+    a(href="/formulario") formulario 
