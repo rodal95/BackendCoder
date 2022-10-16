@@ -1,6 +1,9 @@
 const express = require("express")
+
 const handlebars = require("express-handlebars")
+
 const app = express()
+
 app.listen(8080,()=>{
     console.log("server andando")
 })
@@ -22,6 +25,8 @@ app.get("/formulario",(req,res)=>{
 })
 app.get("/tabla",(req,res)=>{
     res.render("tabla",{productos})
+
+    
 })
 
 app.post("/formulario",(req,res)=>{
@@ -29,4 +34,6 @@ app.post("/formulario",(req,res)=>{
     productos.push(newProduct)
     res.redirect("/")
     console.log(productos)
+
+
 })

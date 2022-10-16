@@ -1,16 +1,19 @@
-<from>
-    <h1>formulario</h1>
-
+<div>
+    <h1>Formulario</h1>
     <form method="post" action="/formulario">
-        <label>nombre</label>
-        <input type="text" name="name"/>
-        <label>precio</label>
-        <input type="number" name="price"/>
-        <label>stock</label>
-        <input type="numbre" name="stock"/>
-        <button type="submit">enviar</button>
-    </from>
-    <a href="/">home</a>
-    <a href="/tabla">tabla</a>
+        <div class="mb-3">
+            <label class="form-label">Nombre del Producto</label>
+            <input type="text" name="name" class="form-control" required="true">
+            <label class="form-label">Precio</label>
+            <input type="number" name="price" class="form-control" required="true">
+            <label class="form-label">Imagen URL</label>
+            <input type="text" name="image" class="form-control" required="true"><br>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+        
+    </form>
+    <br>
+    <a href="/"><button class="btn btn-primary">Home</button></a>
+    <a href="/tabla"><button class="btn btn-primary">Tabla</button></a>
     
 </div>
