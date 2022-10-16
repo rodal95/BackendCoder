@@ -1,26 +1,27 @@
 const express = require("express")
+const handlebars = require("express-handlebars")
 const app = express()
-app.listen(8080, ()=>console.log("andando wacho"))
-
-
+app.listen(8080,()=>{
+    console.log("server andando")
+})
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
+app.engine("handlebars", handlebars.engine())
 
-app.set("views", "./views")
-app.set("view engine","ejs")
+app.set("views","./views")
 
-
+app.set("view engine", "handlebars")
 const productos = []
-
 app.get("/", (req,res)=>{
     res.render("home")
 })
+
 app.get("/formulario",(req,res)=>{
-    res.render("form")
+    res.render("formulario")
 })
 app.get("/tabla",(req,res)=>{
-    res.render("table",{products:productos})
+    res.render("tabla",{productos})
 })
 
 app.post("/formulario",(req,res)=>{
@@ -29,7 +30,3 @@ app.post("/formulario",(req,res)=>{
     res.redirect("/")
     console.log(productos)
 })
-
-
-
-

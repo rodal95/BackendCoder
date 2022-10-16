@@ -1,0 +1,23 @@
+<div>
+
+    <h1>tabla</h1>
+    <table>
+        <tr>
+          <th>Nombre</th>
+          <th>precio</th>
+          <th>stock</th>
+        </tr>
+        {{#each productos}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.price}}</td>
+          <td>{{this.stock}}</td>
+        </tr>
+         {{/each}}
+      </table>
+     
+
+    <a href="/">home</a><br>
+    <a href="/formulario">formulario</a>
+
+</div>
