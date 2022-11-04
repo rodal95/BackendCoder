@@ -1,10 +1,10 @@
 const express = require("express");
 const productRouter = require("./routes/products");
-const cartRouter = require("/routes/cart")
+const cartRouter = require("./routes/cart");
+
 const app = express();
 
-
-const PORT = process.env.PORT || 8080;
+const PORT = 8080
 
 app.listen(PORT, ()=>console.log(`listening on port ${PORT}`));
 

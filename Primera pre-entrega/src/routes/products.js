@@ -1,8 +1,8 @@
 const express = require("express");
 const Contenedor = require("../managers/contenedor");
 const productsRouter = express.Router();
-
-const contenedorProductos = new Contenedor("productos.json");
+const isAdmin=require("../middlewares/admin")
+const contenedorProductos = new Contenedor("../files/productos.json");
 
 productsRouter.get("/",async(req,res)=>{
     try {
@@ -28,8 +28,7 @@ productsRouter.get("/:id", async(req,res)=>{
         })
     }
 })
-
-productsRouter.post("/",async(req,res)=>{
+productsRouter.post("/",isAdmin,async(req,res)=>{
     const newProduct = req.body;
     const product = await contenedorProductos.getById(parseInt(newProduct.id));
     if(product.id === newProduct.id){
@@ -50,11 +49,9 @@ productsRouter.post("/",async(req,res)=>{
         })
     }
     }
-    
-    
 })
 
-productsRouter.put("/:id", async(req,res)=>{
+productsRouter.put("/:id",isAdmin, async(req,res)=>{
     const {id} = req.params;
     const product = await contenedorProductos.getById(parseInt(id));
     
@@ -79,10 +76,9 @@ productsRouter.put("/:id", async(req,res)=>{
             message:"producto no encontrado"
         })
     }
-    
 })
 
-productsRouter.delete("/:id", async(req,res)=>{
+productsRouter.delete("/:id",isAdmin, async(req,res)=>{
     const {id} = req.params;
     const product = await contenedorProductos.getById(parseInt(id));
     if(product){
