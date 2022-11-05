@@ -1,0 +1,19 @@
+[
+  {
+    "id": 3,
+    "timestamp": "1667631572813",
+    "productos": []
+  },
+  {
+    "id": 4,
+    "timestamp": "1667631579714",
+    "productos": []
+  },
+  {
+    "id": 2,
+    "timestamp": "1667631334884",
+    "productos": [
+      "pera"
+    ]
+  }
+]

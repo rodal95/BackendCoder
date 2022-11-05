@@ -31,6 +31,7 @@ class Contenedor{
                 }
                await fs.promises.writeFile(this.nameFile, JSON.stringify([newProduct], null, 2))
             }
+
         } catch (error) {
             console.log(error)
             }

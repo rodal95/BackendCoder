@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "pera",
+    "price": 300,
+    "thumbnail": "https://jumboargentina.vtexassets.com/arquivos/ids/534091/Manzana-X-1-Kg-1-25961.jpg?v=636935298252030000"
+  },
+  {
+    "id": 2,
+    "title": "manzana",
+    "price": 300,
+    "thumbnail": "https://jumboargentina.vtexassets.com/arquivos/ids/534091/Manzana-X-1-Kg-1-25961.jpg?v=636935298252030000"
+  },
+  {
+    "id": 3,
+    "title": "kiwi",
+    "price": 500,
+    "thumbnail": "https://jumboargentina.vtexassets.com/arquivos/ids/534091/Manzana-X-1-Kg-1-25961.jpg?v=636935298252030000"
+  }
+]

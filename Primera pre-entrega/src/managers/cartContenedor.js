@@ -1,86 +1,94 @@
 const fs = require('fs');
+const { get } = require('https');
 const path = require("path")
 const Contenedor = require('./contenedor');
-const { writeHeapSnapshot } = require('v8');
 class ContenedorCart {
 
-    constructor(nameFile,productFile){
-        this.productManager = new Contenedor(productFile)
-        this.nameFile = path.join(__dirname,`../files/${nameFile}`);
+    constructor(cartFile,productFile){
+        this.productManager = new Contenedor(productFile);
+        this.cartFile = path.join(__dirname,`../files/${cartFile}`);
     }
+
     createCart = async ()=>{
-        try{
-            if(fs.existsSync(this.nameFile)){
-                const carritos = fs.readFileSync(this.nameFile)
+            if(fs.existsSync(this.cartFile)){
+                const carritos = JSON.parse(fs.readFileSync(this.cartFile))
+                console.log(carritos.length)
                 if(carritos){
-                    let lastIdCart = carritos.reduce((acc,item)=>item.id > acc ? acc = item.id : 0)
+                    /* let lastCart = carritos.reduce((acc,item)=>item.id > acc ? acc = item.id : 0)
+                    console.log(lastCart) */
+                    let lastIdCart=carritos.length
                     const newCarrito ={
                         id:lastIdCart+1,
                         timestamp: Date.now().toString(),
                         productos:[]
                     }
                     carritos.push(newCarrito)
-                    await fs.promises.writeFile(this.nameFile,JSON.stringify(carritos,null,2))
+                    await fs.promises.writeFile(this.cartFile,JSON.stringify(carritos,null,2))
                     return newCarrito.id
                 }
                 else{
-                    const newCarrito ={
+                    const newCarrito={
                         id:1,
                         timestamp:Date.now().toString(),
                         productos:[]
                     }
-                    await fs.promises.writeFile(this.nameFile,JSON.stringify(newCarrito,null,2))
+                    await fs.promises.writeFile(this.cartFile,JSON.stringify([newCarrito],null,2))
                     return newCarrito.id
                 }
             }
-        }
-        catch{
-            console.log(error)
-        }
+            else{
+                const newCarrito={
+                    id:1,
+                    timestamp:Date.now().toString(),
+                    productos:[]
+                }
+                await fs.promises.writeFile(this.cartFile,JSON.stringify([newCarrito],null,2))
+                return newCarrito.id
+            }
     }
     saveProduct = async (productId,cartId)=>{
-        try{
-            let carritos = await this.readFileSync()
-            let index = carritos.findIndex(cartId)
-            if(index){
+            let carritos = await JSON.parse(fs.readFileSync(this.cartFile))
+            let carrito = carritos.filter(item=> item.id===parseInt(cartId))
+            console.log(carrito[0])
+            if(carrito){
                 let getProduct = await this.productManager.getById(productId)
-                carritos[index].productos.push(getProduct)
+                console.log(getProduct)
+                carrito[0].productos.push(getProduct.title)
+                const newCarritos = carritos.filter(item=> item.id!==parseInt(cartId))
+                newCarritos.push(carrito[0])
+                console.log(carrito)
+                await fs.promises.writeFile(this.cartFile, JSON.stringify(newCarritos,null,2))
             }
             else{
                 console.log("no se encuentra carrito")
             }
-        }
-        catch{
-            console.log(error)
-        }
+       
     }
     deleteById = async (cartId,productId)=>{
-        try{
-            let carritos = await this.readFileSync()
-            let index = carritos.findIndex(cartId)
-            if(index){
-                let deleteProduct = carritos.productos.findIndex((product)=>product.id == productId)
-                if(deleteProduct){
-                    carritos[index].productos.splice(deleteProduct,1)
-                }
-                else{
-                    console.log("no se encuentra producto para borrar")
-                }
+    
+        let carritos = await JSON.parse(fs.readFileSync(this.cartFile))
+        let carrito = carritos.filter(item=> item.id===parseInt(cartId))
+        console.log(carrito)
+        if(carrito){
+            let getProduct = await this.productManager.getById(parseInt(productId))
+            let productosInCarrito = carrito[0].productos
+            let newProductsFiltrador = productosInCarrito.filter(item=>item !== getProduct.title)
+            if(newProductsFiltrador){
+                carrito[0].productos=newProductsFiltrador
+                /* carrito[0].productos.push(newProductsFiltrador) */
+                const newCarritos = carritos.filter(item=> item.id!==parseInt(cartId))
+                newCarritos.push(carrito[0])
+                await fs.promises.writeFile(this.cartFile, JSON.stringify(newCarritos,null,2))
             }
-            else{
-                console.log("error delete")
-            }
-        }
-        catch{
-            console.log(error)
-        }
+        }   
     }
     deleteAll = async (cartId)=>{
-        let carritos = await this.readFileSync()
-        let index = carritos.findIndex(cartId)
-        if(index){
-            carritos[index]={}
-        }
+        console.log(cartId)
+        let carritos = await JSON.parse(fs.readFileSync(this.cartFile))
+        const newCarritos = carritos.filter(item=> item.id!==parseInt(cartId))
+        console.log(newCarritos)
+        await fs.promises.writeFile(this.cartFile, JSON.stringify(newCarritos,null,2))
+    
     }
 }
 module.exports= ContenedorCart;
