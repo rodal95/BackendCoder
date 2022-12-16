@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "author": {
+      "email": "alday@gmail.com",
+      "nombre": "rodrigo"
+    },
+    "text": "hola",
+    "timestamp": "16/12/2022"
+  },
+  {
+    "id": 2,
+    "author": {
+      "email": "alday@gmail.com",
+      "nombre": "rodrigo"
+    },
+    "text": "como estas",
+    "timestamp": "16/12/2022"
+  }
+]
