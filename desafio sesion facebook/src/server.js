@@ -1,6 +1,7 @@
 const express = require("express");
 const handlebars = require("express-handlebars")
 const options = require("./config/dbConfig")
+const bcrypt = require("bcrypt")
 const {Server} = require("socket.io");
 const Contenedor = require("./managers/contenedor")
 const ContenedorMensajes = require("./managers/contenedorMensajes")
@@ -116,25 +117,32 @@ app.get("/login",async (req,res)=>{
     res.render("login")
 } )
 app.post("/login",(req,res)=>{
-    if(req.session.user || req.isAuthenticated()){}
-    const user = req.body
-    userLog=user
-    userModel.findOne({username:user.email},(err,userFound)=>{
-        if(err) res.send(err)
-        if(userFound){
-            if(bcrypt.compareSync(user.password,userFound.password)){
-                req.session.user = user
-                res.redirect("/home")
+    if(req.session.user){
+        res.redirect("/home")
+    }
+    else{
+        const user = req.body
+    
+        userModel.findOne({username:user.email},(err,userFound)=>{
+            if(err) res.send(err)
+            if(userFound){
+                userLog = userFound
+                console.log("usuario q viene",userLog)
+                if(bcrypt.compareSync(user.password,userFound.password)){
+                    req.session.user = user
+                    res.redirect("/home")
+                }else{
+                    res.render("login",{error:"contraseña incorrecta gil"})
+                }
             }else{
-                res.render("login",{error:"contraseña incorrecta gil"})
+                res.render("login",{error:"usuario no registrado en base"})
             }
-        }else{
-            res.render("login",{error:"usuario no registrado en base"})
-        }
-    })
+        })
+    }
+    
 });
 app.get("/registro",(req,res)=>{
-    if(req.session.user || req.isAuthenticated()){
+    if(req.session.user){
         res.redirect("/perfil")
     }else{
         res.render("signup")
@@ -152,7 +160,7 @@ app.get("/logout",(req,res)=>{
     req.logOut(err=>{
         if(err) return res.send("error en cerrar sesion")
         req.session.destroy();
-        res.redirect("/")
+        res.redirect("/login")
     }) 
     
 });
@@ -199,7 +207,7 @@ io.on("connection",async (socket)=>{
                 id:1,
                 ...data
             }
-            
+            console.log(nuevoMensaje)
             historicosMensajes.push(nuevoMensaje)
             await mensajesApi.save(historicosMensajes)
         }

@@ -9,12 +9,13 @@ function salir(){
 
   }
 socketClient.on("usuarioLog",(data)=>{
-   user = data
-   console.log(user.nombre)
+   user={name:data.name,email:data.username}
+   console.log("usuario q llega",user)
+   
    
 const containerUsuario = document.getElementById("UsuarioLog")
 
-containerUsuario.innerHTML=`<h1>Bienvenido ${user.nombre}</h1><a href='/salir'><button>Salir</button></a>`
+containerUsuario.innerHTML=`<h1>Bienvenido ${user.name}</h1><a href='/logout'><button>Salir</button></a>`
 
   })
 
@@ -76,10 +77,11 @@ campo.addEventListener("keydown",(evt)=>{
 //mostrar todos los mensajes cuando usuario carga pag
 const messageContainer = document.getElementById("messageContainer")
 socketClient.on("historico", (data)=>{
+    console.log("data que viene",data.entities)
     let elementos =""
-    const normalData = normalizr.denormalize(data.result,chatSchema,data.entities)
+    const normalData = normalizr.denormalize(data.result,chatSchema,data.entities) 
     normalData.mensajes.forEach(item =>{
-        elementos = elementos + `<p><strong>${item.author.nombre}</strong>: ${item.text}</p>`
+        elementos = elementos + `<p><strong>${item.author.name}</strong>: ${item.text}</p>`
         
     })
     messageContainer.innerHTML = elementos

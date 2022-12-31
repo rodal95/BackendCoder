@@ -1,8 +1,20 @@
 [
   {
     "id": 1,
-    "author": null,
+    "author": {
+      "name": "rodrigo",
+      "email": "alday@gmail.com"
+    },
     "text": "hola",
-    "timestamp": "30/12/2022"
+    "timestamp": "31/12/2022"
+  },
+  {
+    "id": 2,
+    "author": {
+      "name": "rodrigo",
+      "email": "alday@gmail.com"
+    },
+    "text": "q tal",
+    "timestamp": "31/12/2022"
   }
 ]
