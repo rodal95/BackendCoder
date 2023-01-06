@@ -16,12 +16,13 @@ const {userModel} = require("./models/user")
 const {fork} = require("child_process")
 const {bases} = require("./config/config")
 const ParsedArgs = require("minimist")
-/* const ContenedorSql = require("./managers/contenedorSql") */
+const path = require("path")
 
+/* const ContenedorSql = require("./managers/contenedorSql") */
+const child = fork(path.join(__dirname,"./child.js"))
 const opciones = {default:{p:8080}}
 const objArguments = ParsedArgs(process.argv.slice(2), opciones)
-console.log(bases)
-mongoose.connect(config.usuarios,{
+mongoose.connect(bases.usuarios,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 },(error)=>{
@@ -46,7 +47,7 @@ app.use(express.urlencoded({ extended: true }));
 const PORT = objArguments.p || 8080;
 app.use(session({
     store: MongoStore.create({
-        mongoUrl:config.mongoDBsessions
+        mongoUrl:bases.sesiones
     }),
     secret:"claveSecreta", //clave de encriptacion de la sesion
     //config para guardar en la memoria del servidor
@@ -97,6 +98,10 @@ passport.use("signupStrategy",new Strategy(
         })
     }
 ))
+
+
+
+
 let userLog
 //servidor de express
 const server = app.listen(PORT, ()=>console.log(`listening on port ${PORT}`));
@@ -108,6 +113,7 @@ app.use(express.static(__dirname+"/public"));
 app.use(cookieParser());
 
 
+
 app.get("/",(req,res)=>{
     res.render("login")
 })
@@ -117,6 +123,19 @@ app.get("/home",(req,res)=>{
     }else{
         res.redirect("/login")
     }
+})
+app.get("/info",(req,res)=>{
+    res.send({"version node":process.version,"sistema opetarivo":process.memoryUsage(),"path ejecucion":process.execPath,"process ID":process.pid,"argumentos entrada":process.argv.slice(2)})
+    process.end
+})
+app.get("/randoms",(req,res)=>{
+    num=req.query.cant
+    child.send()
+    child.on("numero",(respuesta)=>{
+        console.log(respuesta)
+        res.end(respuesta)
+    })
+
 })
 app.get("/login",async (req,res)=>{
     res.render("login")
