@@ -18,8 +18,11 @@ const {bases} = require("./config/config")
 const ParsedArgs = require("minimist")
 const path = require("path")
 
+
+
+
 /* const ContenedorSql = require("./managers/contenedorSql") */
-const child = fork(path.join(__dirname,"./child.js"))
+
 const opciones = {default:{p:8080}}
 const objArguments = ParsedArgs(process.argv.slice(2), opciones)
 mongoose.connect(bases.usuarios,{
@@ -126,14 +129,16 @@ app.get("/home",(req,res)=>{
 })
 app.get("/info",(req,res)=>{
     res.send({"version node":process.version,"sistema opetarivo":process.memoryUsage(),"path ejecucion":process.execPath,"process ID":process.pid,"argumentos entrada":process.argv.slice(2)})
-    process.end
+    process.done()
 })
 app.get("/randoms",(req,res)=>{
+    const child = fork(path.join(__dirname,"./child.js"))
     num=req.query.cant
-    child.send()
-    child.on("numero",(respuesta)=>{
-        console.log(respuesta)
-        res.end(respuesta)
+    if(num)  child.send(num)
+    else child.send(false)
+   
+    child.on("message",(respuesta)=>{
+        res.send(respuesta)
     })
 
 })

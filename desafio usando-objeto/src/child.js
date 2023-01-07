@@ -1,23 +1,30 @@
 let randoms=[]
-
+let repetidos = []
 const getRandoms = (cantidad)=>{
     if(cantidad){
-        for (let i = 0; i<= cantidad;i++){
-            num = Math.random()*1000
+        for(let i = 0; i<= cantidad;i++){
+            num = Math.floor(Math.random()*1000)
             randoms.push(num)
         }
     }else{
-        for (let i = 0; i<= 5;i++){
-            num = Math.random()*1000
+        for(let i = 0;i<= 100000;i++){
+            num = Math.floor(Math.random()*1000)
             randoms.push(num)
         }
     }
     return randoms
 }
-
-
-process.on("numero",numero =>{
+process.on("message",numero =>{
     const resultado = getRandoms(numero)
-    console.log(resultado)
-    process.send(resultado.toString)
+    let contar = 0
+    const arregloOrdenado = resultado.sort()
+    for(let i = 0; i<arregloOrdenado.length; i++){
+        if(arregloOrdenado[i+1] === arregloOrdenado[i]){
+            contar = contar + 1
+        }
+        const repetido = {"numero": i, "cantidad": contar}
+        repetidos.push(repetido)
+    }
+    
+    process.send(repetidos)
 })
