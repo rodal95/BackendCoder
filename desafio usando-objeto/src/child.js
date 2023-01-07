@@ -22,8 +22,11 @@ process.on("message",numero =>{
         if(arregloOrdenado[i+1] === arregloOrdenado[i]){
             contar = contar + 1
         }
-        const repetido = {"numero": i, "cantidad": contar}
-        repetidos.push(repetido)
+        if(contar>0){
+            const repetido = {"numero": i, "cantidad": contar}
+            repetidos.push(repetido)
+        }
+        
     }
     
     process.send(repetidos)
