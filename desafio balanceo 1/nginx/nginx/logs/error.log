@@ -1,0 +1,25 @@
+2023/01/09 16:18:21 [notice] 19840#13788: signal process started
+2023/01/09 16:20:18 [notice] 23124#32448: signal process started
+2023/01/09 16:22:56 [error] 18132#32860: *1 CreateFile() "C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-1.23.3/html/favicon.ico" failed (2: El sistema no puede encontrar el archivo especificado), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/01/09 17:20:15 [notice] 32200#30952: signal process started
+2023/01/09 17:29:37 [emerg] 3428#33328: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:29:37 [alert] 29828#31260: worker process 3428 exited with code 1
+2023/01/09 17:29:37 [alert] 29828#31260: could not respawn worker
+2023/01/09 17:29:49 [emerg] 34016#9048: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:34:33 [emerg] 32720#18176: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:34:48 [emerg] 6036#14712: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:34:59 [emerg] 25572#32692: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:35:01 [emerg] 19028#31200: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:35:22 [emerg] 32904#28432: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:36:09 [emerg] 24984#27500: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:36:45 [emerg] 24660#12276: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:36:46 [emerg] 24720#13844: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:36:48 [emerg] 24640#11224: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:36:53 [emerg] 15800#32848: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/09 17:36:58 [emerg] 31028#26064: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/10 11:09:37 [emerg] 10736#1256: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/10 11:10:02 [emerg] 11024#2628: invalid number of arguments in "root" directive in C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/conf/nginx.conf:49
+2023/01/10 11:11:21 [error] 18352#17556: *1 CreateFile() "C:\Users\rmaha\Desktop\curso_coder\backend\clase 15\balance\nginx-node\nginx/../node_pm2/public/favicon.ico" failed (2: El sistema no puede encontrar el archivo especificado), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/01/10 11:13:24 [error] 18352#17556: *4 connect() failed (10061: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /perfil HTTP/1.1", upstream: "http://127.0.0.1:8082/perfil", host: "localhost"
+2023/01/10 11:13:26 [error] 18352#17556: *4 connect() failed (10061: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /perfil HTTP/1.1", upstream: "http://127.0.0.1:8081/perfil", host: "localhost"
+2023/01/12 11:45:56 [emerg] 19420#1512: unexpected "}" in C:\Users\rmaha\Desktop\curso_coder\backend\desafio balanceo 1\nginx\nginx/conf/nginx.conf:52
